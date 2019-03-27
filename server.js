@@ -1,7 +1,7 @@
 //Set up Express
 let express = require('express');
-// let methodOverride = require('method-override');
-// let bodyParser = require("body-parser")
+let methodOverride = require('method-override');
+// let bodyParser = require("body-parser");
 
 //Sets up Express App
 let app = express();
@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Call the method override NPM to mass in a method on the buttons
-// app.use(methodOverride("_method"));
+app.use(methodOverride("_method"));
 
 //Set Handlebars
 let exphbs = require("express-handlebars");

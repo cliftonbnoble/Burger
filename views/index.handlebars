@@ -58,7 +58,7 @@
                             </td>
                             <td>
                             <form action="/{{this.id}}?_method=DELETE" method="POST">
-                                <input type="hidden" name="delete_burger" value="{{this.id}}">
+                                <input type="hidden" name="id" value="{{this.id}}">
                                 <button class="btnColor btn btn-danger delete" type="submit">Delete</button>
                             </form>
                             </td>
@@ -69,8 +69,9 @@
             </table>
     </div>
 </div>
+</div>
 
-<div class="row">
+<div class="row jumbotron d-block mx-auto">
     <div class="section d-block mx-auto col-lg-12 col-md-12 col-sm-12">
         <form class="create-update-form" action="/" method="POST">
             <div class="form-group">
@@ -81,5 +82,5 @@
         </form>
     </div>
 </div>
-</div>
+
 </div>
