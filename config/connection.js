@@ -1,14 +1,18 @@
 //Grab MySQL Connection
 let mysql = require("mysql");
-
-let connection = mysql.createConnection({
+let connection;
+//Heroku DB deployment
+if (process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL)
+} else {
+connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
     password: "root",
     database: "burgers_db"
 });
-
+}
 //Make the sequel connection
 connection.connect(function (err) {
     if (err) {
