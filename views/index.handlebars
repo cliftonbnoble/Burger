@@ -1,0 +1,85 @@
+<div class="container">
+
+  <div class="row jumbotron col-lg-12 mx-auto text-center d-block">
+<h1>Eat Da Burger</h1>
+<br>
+{{!-- <img class="img-fluid img-center" src="../public/assets/images/Burger-Transparent-Images.png" alt="Burger Pic"> --}}
+
+  </div>
+  <div class="row jumbotron mx-auto">
+  <div class="col-lg-4 col-md-4 col-sm-4 list-group">
+<div class='notDevoured section'>
+        <h2>On My Plate</h2>
+        <table class ="table">
+            <thead>
+            <tr>
+                <th class="titleCenter">Not devoured</th>
+                <th class="titleCenter">Devour it</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                {{#each burgers}}
+                    {{#unless this.devoured}}
+                            <td>
+                                {{this.burger_name}}
+                            </td>
+                            <td>
+                                <form action="/{{this.id}}  ?_method=PUT" method="POST">
+                                    <input type="hidden" name="devoured" value="true">
+                                    <button class="btnColor btn btn-success change-devour" type="submit">Devour it!</button>
+                                </form>
+                            </td>
+                    {{/unless}}
+                        </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4">
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 list-group">
+<div class="devoured section">
+  <h2>In my Belly</h2>
+  <table class ="table">
+        <thead>
+            <tr>
+                <th class="titleCenter">Devoured</th>
+                <th class="titleCenter">Delete it</th>
+            </tr>
+            </thead>
+        <tbody>
+          <tr>        
+                {{#each burgers}}
+                    {{#if this.devoured}}
+                        <td>
+                            {{this.burger_name}}
+                            </td>
+                            <td>
+                            <form action="/{{this.id}}?_method=DELETE" method="POST">
+                                <input type="hidden" name="delete_burger" value="{{this.id}}">
+                                <button class="btnColor btn btn-danger delete" type="submit">Delete</button>
+                            </form>
+                            </td>
+                    {{/if}}
+                    </tr>
+                {{/each}}
+             </tbody>   
+            </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="section d-block mx-auto col-lg-12 col-md-12 col-sm-12">
+        <form class="create-update-form" action="/" method="POST">
+            <div class="form-group">
+                <label for="ca">Burger Name:</label>
+                <input type="text" id="burgerInput" name="burger_name" placeholder="Add a burger">
+            <button class="btnColor btn btn-success" type="submit">Add burger</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
