@@ -1,6 +1,22 @@
 h1 {
+    font-size: 60px;
     font-family: 'Luckiest Guy', cursive;
+    color: red;
 }
 h2 {
     font-family: 'Luckiest Guy', cursive;
+    color: red;
+}
+body {
+    min-height: 100%;
+    text-align: center;
+    background: url(../images/burger-background.jpg);
+    background-size: cover;
+}
+/* .jumbotron{
+    opacity: 0.5;
+} */
+#burger-pic {
+    width: 400px;
+    height: 300px;
 }

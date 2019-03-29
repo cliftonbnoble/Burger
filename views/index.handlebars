@@ -1,15 +1,14 @@
 <div class="container">
 
-  <div class="row jumbotron col-lg-12 mx-auto text-center d-block">
+  <div class="row jumbotron-fluid col-lg-12 mx-auto text-center d-block">
 <h1>Eat Da Burger</h1>
+<img id="burger-pic" class="img-fluid" src="/assets/images/Burger-Transparent-Images.png" alt="Burger">
 <br>
-{{!-- <img class="img-fluid img-center" src="../public/assets/images/Burger-Transparent-Images.png" alt="Burger Pic"> --}}
-
   </div>
-  <div class="row jumbotron mx-auto">
+  <div class="row jumbotron mx-auto pt-2 pb-1">
   <div class="col-lg-4 col-md-4 col-sm-4 list-group">
 <div class='notDevoured section'>
-        <h2>On My Plate</h2>
+        <h2 class="text-center">On My Plate</h2>
         <table class ="table">
             <thead>
             <tr>
@@ -25,10 +24,7 @@
                                 {{this.burger_name}}
                             </td>
                             <td>
-                                <form action="/{{this.id}}  ?_method=PUT" method="POST">
-                                    <input type="hidden" name="devoured" value="true">
-                                    <button class="btnColor btn btn-success change-devour" type="submit">Devour it!</button>
-                                </form>
+                                <button id="update" class="btnColor btn btn-success change-devour" data-id="{{this.id}}">Devour it!</button>
                             </td>
                     {{/unless}}
                         </tr>
@@ -41,7 +37,7 @@
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 list-group">
 <div class="devoured section">
-  <h2>In my Belly</h2>
+  <h2 class="text-center">In my Belly</h2>
   <table class ="table">
         <thead>
             <tr>
@@ -57,10 +53,7 @@
                             {{this.burger_name}}
                             </td>
                             <td>
-                            <form action="/{{this.id}}?_method=DELETE" method="POST">
-                                <input type="hidden" name="id" value="{{this.id}}">
-                                <button class="btnColor btn btn-danger delete" type="submit">Delete</button>
-                            </form>
+                            <button id="delete" class="btnColor btn btn-danger" data-id="{{this.id}}">Delete</button>
                             </td>
                     {{/if}}
                     </tr>
@@ -71,10 +64,10 @@
 </div>
 </div>
 
-<div class="row jumbotron d-block mx-auto">
+<div class="row jumbotron d-block mx-auto pt-3 pb-2">
     <div class="section d-block mx-auto col-lg-12 col-md-12 col-sm-12">
         <form class="create-update-form" action="/" method="POST">
-            <div class="form-group">
+            <div class="form-group mx-auto d-block">
                 <label for="ca">Burger Name:</label>
                 <input type="text" id="burgerInput" name="burger_name" placeholder="Add a burger">
             <button class="btnColor btn btn-success" type="submit">Add burger</button>
@@ -84,3 +77,36 @@
 </div>
 
 </div>
+
+
+<script>
+$("#delete").on("click", function(){
+    let id = $(this).attr("data-id");
+    $.ajax({
+        method: "DELETE",
+        url: `/${id}`
+        
+    }).then(function(results){
+        console.log(results)
+        location.reload();
+    })
+    
+})
+//update
+$("#update").on("click", function(){
+    let id = $(this).attr("data-id");
+    console.log(id)
+    $.ajax({
+        method: "PUT",
+        url: `/${id}`
+        
+    }).then(function(results){
+        console.log(results)
+        location.reload();
+    });
+    
+});
+
+
+
+</script>
